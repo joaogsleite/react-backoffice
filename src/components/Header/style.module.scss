@@ -1,0 +1,13 @@
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  & > h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #363636;
+  }
+}

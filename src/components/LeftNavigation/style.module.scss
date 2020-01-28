@@ -1,0 +1,21 @@
+
+@import '~style/variables.scss';
+
+.navigation {
+  position: fixed;
+  top: $navbar-height;
+  left: 0;
+  height: calc(100% - #{$navbar-height});
+  width: $sidebar-width;
+  padding: $padding-small;
+  background-color: #1D2332;
+  transition: left .2s ease;
+  z-index: 10;
+  overflow: auto;
+
+  /*&.closed {
+    @include touch {
+      left: -$sidebar-width;
+    }
+  }*/
+}
