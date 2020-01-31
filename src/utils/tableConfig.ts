@@ -8,15 +8,6 @@ export interface ITableConfig {
   }
 }
 
-export const table: ITableConfig = {
-  name: 'asdasd',
-  visible: true,
-  layout: {
-    label: 'asdasd',
-    listPage: {},
-  }
-}
-
 export function isVisibleInSideMenu(table: ITableConfig): boolean {
   return table.visible && (table.layout && table.layout.listPage) !== false
 }

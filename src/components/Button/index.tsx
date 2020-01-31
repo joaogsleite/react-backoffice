@@ -1,7 +1,33 @@
-import React,{memo} from 'react'
+import React, { memo, MouseEvent, FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
-function Button({ disabled, className, rounded, text, icon, iconPosition = 'left', color, position, onClick, style, primary }) {
+export interface IButtonProps {
+  disabled?: boolean,
+  className?: string,
+  rounded?: boolean,
+  text?: string | ReactNode,
+  icon?: string,
+  iconPosition?: string,
+  color?: string,
+  position?: string,
+  onClick: ((event: MouseEvent) => void),
+  style?: any,
+  primary?: boolean,
+}
+
+const Button: FC<IButtonProps> = ({
+  disabled,
+  className = '',
+  rounded,
+  text,
+  icon,
+  iconPosition = 'left',
+  color,
+  position,
+  onClick,
+  style,
+  primary,
+}) => {
 
   const wrapperClasses = classNames({
     'button': true,

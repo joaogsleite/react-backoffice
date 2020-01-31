@@ -12,9 +12,4 @@
   border-left: 1px solid #ececec;
   border-top: 1px solid #ececec;
   max-width: none;
-
-  @include touch {
-    width: 100%;
-    left: 0;
-  }
 }

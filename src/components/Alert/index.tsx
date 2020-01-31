@@ -1,7 +1,16 @@
-import React, { memo } from 'react'
+import React, { memo, FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
-function Alert({ title, children, onDismiss, info, error, success }) {
+export interface IAlertProps {
+  title?: string,
+  children: ReactNode,
+  onDismiss: (() => void),
+  info?: boolean,
+  error?: boolean,
+  success?: boolean,
+}
+
+const Alert: FC<IAlertProps> = ({ title, children, onDismiss, info, error, success }) => {
 
   const wrapperClasses = classNames({
     'message': true,

@@ -1,6 +1,14 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 
-function Message ({ success, error, loading, text, icon }) {
+export interface IMessageProps {
+  success?: boolean,
+  error?: boolean
+  loading?: boolean,
+  text: string,
+  icon?: string,
+}
+
+const Message: FC<IMessageProps> = ({ success, error, loading, text, icon }) => {
   return <div className="has-text-centered">
 
     { loading && (
