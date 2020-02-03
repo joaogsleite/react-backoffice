@@ -1,7 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import RootView from 'views/Root';
+import 'style/index.scss';
+
+const App: React.FC = () => (
+  <BrowserRouter>
+    <RootView />
+  </BrowserRouter>
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
