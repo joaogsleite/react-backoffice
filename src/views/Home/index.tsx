@@ -3,7 +3,7 @@ import style from './style.module.scss';
 
 export interface IHomeProps {
 
-}
+};
 
 const Home: FC<IHomeProps> = () => {
   return (

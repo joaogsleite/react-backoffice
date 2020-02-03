@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import style from './style.module.scss';
 
-export interface ILoginProps {}
+export interface ILoginProps {};
 
 const Login: FC<ILoginProps> = () => {
   return (

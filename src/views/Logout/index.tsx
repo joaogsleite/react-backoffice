@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import style from './style.module.scss';
 
-export interface ILogoutProps {}
+export interface ILogoutProps {};
 
 const Logout: FC<ILogoutProps> = () => {
   return (

@@ -1,6 +1,7 @@
 import api, { API } from 'services/api';
 import { dispatch } from 'reducers';
 import HttpError from '../HttpError';
+import { FETCH_USER_FULFILLED } from 'reducers/user';
 
 import './user.mock'
 
@@ -23,7 +24,7 @@ class User {
     return this.api.get('/users/me').then((user: IUser) => {
       if (user && user.id) {
         dispatch({ 
-          type: 'FETCH_USER_FULFILLED', 
+          type: FETCH_USER_FULFILLED, 
           payload: user,
         });
         return user;
@@ -41,7 +42,7 @@ class User {
     return this.api.post('/auth/local', data).then((user: IUser) => {
       if (user.id) {
         dispatch({ 
-          type: 'FETCH_USER_FULFILLED', 
+          type: FETCH_USER_FULFILLED, 
           payload: user,
         })
         return user

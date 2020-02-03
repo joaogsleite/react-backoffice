@@ -15,7 +15,6 @@ const PrivateRouter: FC<IPrivateRoute> = ({
 }) => {
 
   const location = useLocation()
-  console.log('PrivateRouter')
 
   return (
     <Route

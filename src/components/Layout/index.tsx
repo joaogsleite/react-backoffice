@@ -14,7 +14,6 @@ const Layout: FC<ILayoutProps> = ({ children, className = '' }) => {
     [style.layoutContainer]: true,
     [className]: className,
   });
-  console.log('Layout', children)
   return (
     <div className={layoutClasses}>
       <TopMenu />
