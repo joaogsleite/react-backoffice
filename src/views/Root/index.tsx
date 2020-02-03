@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { Route } from 'react-router-dom';
 
 import Layout from 'components/Layout';
-import Loading from 'views/Loading'
+import Loading from 'views/Loading';
 import PrivateRoute from 'components/PrivateRoute';
 
 const Home = lazy(() => import('views/Home'));

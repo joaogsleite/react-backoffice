@@ -1,10 +1,10 @@
-import { apiAddress } from 'constants/api';
+import { API_ADDRESS } from 'constants/api';
 import HttpError from './HttpError';
 
 type FetchMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export class API {
-  private baseUrl = apiAddress;
+  private baseUrl = API_ADDRESS;
   private defaultOptions: RequestInit = {
     headers: {
       'Accept': 'application/json',

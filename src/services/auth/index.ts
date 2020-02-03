@@ -13,9 +13,11 @@ class Auth {
         if (result) {
           this.user = result;
           localStorage.setItem('username', this.user.username);
-        } else {
-          this.authenticated = false;
         }
+      }).catch(() => {
+        this.user = undefined
+        this.authenticated = false
+        localStorage.removeItem('username');
       })
     } else {
       this.authenticated = false;

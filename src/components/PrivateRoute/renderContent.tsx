@@ -4,6 +4,7 @@ import auth from 'services/auth'
 
 export default function (Component?: ComponentType<any>, render?: FC<any>, redirect?: string) {
   return function (props: any) {
+    console.log('auth.isAuthenticated',auth.isAuthenticated)
     if (auth.isAuthenticated) {
       if (Component) {
         return (

@@ -1,6 +1,8 @@
-import api, { API } from 'services/api'
-import { dispatch } from 'reducers'
+import api, { API } from 'services/api';
+import { dispatch } from 'reducers';
 import HttpError from '../HttpError';
+
+import './user.mock'
 
 export interface IUser {
   id?: number,
@@ -19,7 +21,7 @@ class User {
   me() {
     dispatch({ type : 'FETCH_USER_PENDING' });
     return this.api.get('/users/me').then((user: IUser) => {
-      if (user) {
+      if (user && user.id) {
         dispatch({ 
           type: 'FETCH_USER_FULFILLED', 
           payload: user,
@@ -28,8 +30,6 @@ class User {
       } else {
         throw new HttpError({ status: 403 })
       }
-    }).catch(() => {
-      dispatch({ type: 'FETCH_USER_REJECTED' });
     })
   }
 

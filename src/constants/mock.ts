@@ -1,0 +1,1 @@
+export const MOCK_ENABLED: boolean = true //process.env.NODE_ENV === 'test'

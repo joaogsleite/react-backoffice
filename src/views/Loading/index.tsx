@@ -15,6 +15,7 @@ const Loading: FC<ILoadingProps> = ({ children = null, className = '' }) => {
   return (
     <div className={loadingClasses}>
       {children}
+      Loading...
     </div>
   );
 }

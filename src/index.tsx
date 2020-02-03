@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
+import 'services/api/mock'
 import { BrowserRouter } from 'react-router-dom';
 import RootView from 'views/Root';
 import 'style/index.scss';
