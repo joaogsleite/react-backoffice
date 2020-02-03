@@ -1,5 +1,5 @@
 import React, { FC, ComponentType } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 import renderContent from './renderContent'
 
 export interface IPrivateRoute {
@@ -13,10 +13,13 @@ const PrivateRouter: FC<IPrivateRoute> = ({
   render: privateRender,
   ...rest
 }) => {
+
+  const location = useLocation()
+
   return (
     <Route
       {...rest}
-      render={renderContent(Component, privateRender)}
+      render={renderContent(Component, privateRender, location.pathname)}
     />
   )
 }

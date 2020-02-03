@@ -1,12 +1,9 @@
 import React, { FC, ComponentType } from 'react'
-import { Redirect, useLocation } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import auth from 'services/auth'
 
-export default function (Component?: ComponentType<any>, render?: FC<any>) {
+export default function (Component?: ComponentType<any>, render?: FC<any>, redirect?: string) {
   return function (props: any) {
-
-    const location = useLocation()
-
     if (auth.isAuthenticated) {
       if (Component) {
         return (
@@ -22,7 +19,7 @@ export default function (Component?: ComponentType<any>, render?: FC<any>) {
     } else {
       const to = {
         pathname: '/login',
-        search: `?redirect=${location.pathname}`,
+        search: `?redirect=${redirect}`,
       }
       return (
         <Redirect to={to} />

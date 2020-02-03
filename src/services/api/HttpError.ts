@@ -7,8 +7,8 @@ export interface IHttpError {
 export default class HttpError extends Error{
 
   public readonly status: number;
-  public readonly statusText: string;
-  public readonly body: any;
+  public readonly statusText?: string;
+  public readonly body?: any;
 
   constructor({status, statusText, body}: IHttpError) {
     super(statusText);
