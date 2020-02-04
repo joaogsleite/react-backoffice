@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import style from './style.module.scss';
 
 import useTables from 'hooks/useTables';
-import Message from 'components/Message';
 import Logo from './Logo';
 import Hamburger from './Hamburger';
 
@@ -23,7 +22,7 @@ const SideMenu: FC<ISideMenuProps> = () => {
       </p>
       <ul className={style.menuList}>
         {loading
-          ? <Message loading />
+          ? <p>Loading...</p>
           : tables.map((table, index) => (
               <NavLink key={index} to={`/table/${table.name}`} activeClassName={style.active}>
                 {table.layout.label}

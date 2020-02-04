@@ -5,7 +5,7 @@ const Hamburger: FC = () => {
   return <>
     <input className={style.hamburgerCheckbox} id="hamburger" type="checkbox"></input>
     <label htmlFor="hamburger" className={style.hamburgerButton}>
-      <i className="fas fa-bars"></i>
+      <i className="fa fa-bars"></i>
     </label>
   </>
 }

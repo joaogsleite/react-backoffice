@@ -6,6 +6,7 @@ import Loading from 'views/Loading';
 import PrivateRoute from 'components/PrivateRoute';
 
 const Home = lazy(() => import('views/Home'));
+const Table = lazy(() => import('views/Table'));
 const Login = lazy(() => import('views/Login'));
 const Logout = lazy(() => import('views/Logout'));
 
@@ -16,7 +17,7 @@ export default function () {
       <Route exact path="/logout" component={Logout} />
       <Layout>
         <PrivateRoute exact path="/" component={Home} />
-        <PrivateRoute exact path="/table/:tableName" component={Home} />
+        <PrivateRoute exact path="/table/:tableName" component={Table} />
       </Layout>
     </Suspense>
   )
