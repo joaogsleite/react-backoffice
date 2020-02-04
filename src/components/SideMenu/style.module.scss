@@ -1,20 +1,75 @@
+@import "~style/variables";
+
+.brandContainer {
+  position: absolute;
+  width: 250px;
+  display: flex;
+}
+
 .sideMenuContainer {
-  width: max-content;
+  position: fixed;
+  transition: margin-left 0.5s;
+  width: 250px;
   height: 100vh;
   background: #1d2332;
-  color: white;
-  padding: 0 10px;
+  padding-top: 100px;
+  color: #ddd;
+  & > .menuLabel {
+    padding: 0 10px;
+    font-size: .75em;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
   & > .menuList {
-    padding: 0;
+    padding: 0 10px;
+    & > a {
+      border-radius: 2px;
+      display: block;
+      padding: .5em .75em;
+      color: #ddd;
+      text-decoration: none;
+      &:hover {
+        background-color: #f5f5f5;
+        color: #363636;
+      }
+    }
   }
 }
 
 .logo {
-  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: fixed;
+  width: 250px;
+  height: 70px;
+  background: $info;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
   & > img {
     width: 80px;
     height: auto;
+    filter: brightness(0) invert(1);
   }
+}
+
+.hamburgerCheckbox {
+  display: none;
+  &:checked ~ aside {
+    margin-left: -250px;
+  }
+}
+.hamburgerButton {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  font-size: 30px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  cursor: pointer;
 }

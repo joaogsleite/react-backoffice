@@ -1,6 +1,7 @@
-import React, { FC, memo, useState } from 'react';
+import React, { FC, memo } from 'react';
+
+import Header from 'components/Header';
 import style from './style.module.scss';
-import Toast from 'components/Toast';
 
 export interface IHomeProps {
 
@@ -8,14 +9,9 @@ export interface IHomeProps {
 
 const Home: FC<IHomeProps> = () => {
 
-  const [visible, setVisible] = useState(true);
-
   return (
     <div className={style.homeContainer}>
-      Home view
-      <Toast warning={true} visible={visible} onDismiss={() => setVisible(false)}>
-        Toast body
-      </Toast>
+      <Header title="Home view" />
     </div>
   );
 }

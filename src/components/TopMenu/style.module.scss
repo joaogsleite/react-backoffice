@@ -1,6 +1,8 @@
 .topMenu {
+  position: fixed;
   width: 100%;
   border-bottom: 1px solid #ddd;
-  height: 60px;
-
+  height: 70px;
+  background: white;
+  box-sizing: border-box;
 }

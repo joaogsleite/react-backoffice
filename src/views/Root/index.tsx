@@ -16,6 +16,7 @@ export default function () {
       <Route exact path="/logout" component={Logout} />
       <Layout>
         <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute exact path="/table/:tableName" component={Home} />
       </Layout>
     </Suspense>
   )

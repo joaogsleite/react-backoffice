@@ -1,25 +1,13 @@
-import React, { FC, useCallback, MouseEvent, memo } from 'react';
+import React, { FC, memo } from 'react';
 import style from './style.module.scss';
 
 const Hamburger: FC = () => {
-
-  const handleClick = useCallback((event: MouseEvent) => {
-
-  }, [])
-
-  return (
-    <button
-      className={style.hamburgerButton}
-      aria-label='menu'
-      aria-expanded='false'
-      data-target='navbarBasicExample'
-      onClick={handleClick}
-    >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
-  )
+  return <>
+    <input className={style.hamburgerCheckbox} id="hamburger" type="checkbox"></input>
+    <label htmlFor="hamburger" className={style.hamburgerButton}>
+      <i className="fas fa-bars"></i>
+    </label>
+  </>
 }
 
 export default memo(Hamburger);

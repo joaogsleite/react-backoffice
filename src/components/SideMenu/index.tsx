@@ -6,14 +6,16 @@ import style from './style.module.scss';
 import useTables from 'hooks/useTables';
 import Message from 'components/Message';
 import Logo from './Logo';
+import Hamburger from './Hamburger';
 
 export interface ISideMenuProps {};
 
 const SideMenu: FC<ISideMenuProps> = () => {
   const { tables, loading } = useTables()
-  return (
+  return <>
+    <Hamburger />
+    <Logo />
     <aside className={style.sideMenuContainer}>
-      <Logo />
       <p className={style.menuLabel}>
         Content Types
       </p>
@@ -21,16 +23,14 @@ const SideMenu: FC<ISideMenuProps> = () => {
         {loading
           ? <Message loading />
           : tables.map((table, index) => (
-              <li key={index}>
-                <NavLink to={`/table/${table.name}`} activeClassName={style.active}>
-                  {table.layout.label}
-                </NavLink>
-              </li>
+              <NavLink key={index} to={`/table/${table.name}`} activeClassName={style.active}>
+                {table.layout.label}
+              </NavLink>
             ))
         }
       </ul>
     </aside>
-  )
+  </>
 }
 
 export default memo(SideMenu);
