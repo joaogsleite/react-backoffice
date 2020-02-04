@@ -15,7 +15,9 @@ const SideMenu: FC<ISideMenuProps> = () => {
   return <>
     <Hamburger />
     <Logo />
-    <aside className={style.sideMenuContainer}>
+    <aside className={style.sideMenuSpace}>
+    </aside>
+    <aside className={style.sideMenu}>
       <p className={style.menuLabel}>
         Content Types
       </p>

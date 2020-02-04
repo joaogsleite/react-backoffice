@@ -6,7 +6,12 @@
   display: flex;
 }
 
-.sideMenuContainer {
+.sideMenuSpace {
+  transition: margin-left 0.5s;
+  width: 250px;
+}
+
+.sideMenu {
   position: fixed;
   transition: margin-left 0.5s;
   width: 250px;
