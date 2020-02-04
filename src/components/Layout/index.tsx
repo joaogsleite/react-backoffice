@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import TopMenu from 'components/TopMenu';
+import SideMenu from 'components/SideMenu';
 
 export interface ILayoutProps {
   children?: any[] | any;
@@ -17,6 +18,7 @@ const Layout: FC<ILayoutProps> = ({ children, className = '' }) => {
   return (
     <div className={layoutClasses}>
       <TopMenu />
+      <SideMenu />
       {children}
     </div>
   );

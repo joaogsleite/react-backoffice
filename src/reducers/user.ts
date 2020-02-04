@@ -7,8 +7,12 @@ export interface IUserState extends IBaseState {
   user?: IUser;
 };
 
-export default function (state: IUserState, action: IAction) {
-  console.log('action', action)
+export const initialState: IUserState = {
+  user: undefined,
+};
+
+export default function(state: IUserState, action: IAction) {
+  console.log('action user')
   switch(action.type) {
     case FETCH_USER_FULFILLED:
       return {

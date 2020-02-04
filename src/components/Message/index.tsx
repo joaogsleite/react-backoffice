@@ -4,7 +4,7 @@ export interface IMessageProps {
   success?: boolean,
   error?: boolean
   loading?: boolean,
-  text: string,
+  text?: string,
   icon?: string,
 }
 
@@ -12,7 +12,7 @@ const Message: FC<IMessageProps> = ({ success, error, loading, text, icon }) => 
   return <div className="has-text-centered">
 
     { loading && (
-      <i className="fas fa-3x fa-spinner fa-pulse"></i>
+      <i className="fa fa-3x fa-spinner fa-pulse"></i>
     )}
 
     { error && (
@@ -27,9 +27,11 @@ const Message: FC<IMessageProps> = ({ success, error, loading, text, icon }) => 
       <i className={ 'fas fa-3x fa-'+icon }></i> 
     )}
 
-    <div style={{marginTop:25}}>
-      {text}
-    </div>
+    {text && (
+      <div style={{marginTop:25}}>
+        {text}
+      </div>
+    )}
 
   </div>
 }

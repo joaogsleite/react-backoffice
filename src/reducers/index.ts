@@ -1,16 +1,19 @@
 import recost from 'recost'
 import logger from 'recost-logger'
 
-import user, { IUserState } from './user'
+import user, { initialState as userInitialState, IUserState } from './user'
+import table, { initialState as tableInitialState, ITableState } from './table'
 
-interface IState extends IUserState {};
+interface IState extends IUserState, ITableState {}
 
 const initialState: IState = {
-  user: undefined,
+  ...userInitialState,
+  ...tableInitialState,
 }
 
 const reducers = [
   user,
+  table,
 ]
 
 const middlewares = [
@@ -22,4 +25,4 @@ export const {
   dispatch,
   withState,
   useSelector,
-} = recost(initialState, reducers, middlewares)
+} = recost<IState>(initialState, reducers, middlewares)

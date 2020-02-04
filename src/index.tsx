@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import 'services/api/mock'
 import { BrowserRouter } from 'react-router-dom';
+
 import RootView from 'views/Root';
+import { Provider } from './reducers';
+
+import 'services/api/mock';
 import 'style/index.scss';
 
 const App: React.FC = () => (
-  <BrowserRouter>
-    <RootView />
-  </BrowserRouter>
+  <Provider>
+    <BrowserRouter>
+      <RootView />
+    </BrowserRouter>
+  </Provider>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
