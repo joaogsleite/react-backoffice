@@ -1,0 +1,12 @@
+@import "~style/mixins.scss";
+
+.toast {
+  @include visible;
+  @include color-variants;
+  & > .header {
+
+  }
+  & > .body {
+
+  }
+}

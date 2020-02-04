@@ -12,14 +12,18 @@ export interface ILayoutProps {
 
 const Layout: FC<ILayoutProps> = ({ children, className = '' }) => {
   const layoutClasses = classNames({
-    [style.layoutContainer]: true,
+    [style.layout]: true,
     [className]: className,
   });
   return (
     <div className={layoutClasses}>
-      <TopMenu />
       <SideMenu />
-      {children}
+      <div className={style.main}>
+        <TopMenu />
+        <div className={style.children}>
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

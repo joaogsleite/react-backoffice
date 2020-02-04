@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Alert from './index';
+import Toast from './index';
 
 test('renders Alert component', () => {
   const children = (
@@ -10,7 +10,7 @@ test('renders Alert component', () => {
 
   };
   const { getByText } = render(
-    <Alert
+    <Toast
       children={children}
       onDismiss={handleDismiss}
     />

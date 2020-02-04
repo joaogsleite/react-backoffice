@@ -1,5 +1,7 @@
 import React, { FC, memo } from 'react'
 
+import style from './style.module.scss';
+
 export interface IMessageProps {
   success?: boolean,
   error?: boolean
@@ -9,7 +11,7 @@ export interface IMessageProps {
 }
 
 const Message: FC<IMessageProps> = ({ success, error, loading, text, icon }) => {
-  return <div className="has-text-centered">
+  return <div className={style.message}>
 
     { loading && (
       <i className="fa fa-3x fa-spinner fa-pulse"></i>

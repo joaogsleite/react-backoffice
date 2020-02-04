@@ -1,0 +1,23 @@
+@import "./variables.scss";
+
+@mixin color-variants {
+  &.danger {
+    background-color: $danger;
+  }
+  &.warning {
+    background-color: $warning;
+  }
+  &.info {
+    background-color: $info;
+  }
+  &.success {
+    background-color: $success;
+  }
+}
+
+@mixin visible {
+  display: none;
+  &.visible {
+    display: block;
+  }
+}
