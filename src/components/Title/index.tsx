@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, memo } from 'react'
+import React, { FC, memo } from 'react'
 import classNames from 'classnames'
 
 import style from './style.module.scss'

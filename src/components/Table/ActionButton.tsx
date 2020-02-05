@@ -1,10 +1,10 @@
-import React, { FC, memo, useCallback, MouseEvent } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import Button, { IButtonProps } from 'components/Button';
-import { IPKs } from 'types/table';
 
 export enum EActionType {
   edit = 'edit',
   delete = 'delete',
+  view = 'view',
 };
 
 export interface IActionFunction{
@@ -20,11 +20,12 @@ export interface IActionButtonProps {
 function getButtonProps(type: EActionType): Partial<IButtonProps> {
   switch(type) {
     case EActionType.edit:
-      return { icon: 'edit', text: 'Edit' };
+      return { icon: 'edit' };
     case EActionType.delete:
-      return { icon: 'times', text: 'Delete' };
+      return { icon: 'times', color: 'danger' };
+    case EActionType.view:
     default:
-      return { icon: 'action', text: 'view' };
+      return { icon: 'eye' };
   }
 }
 

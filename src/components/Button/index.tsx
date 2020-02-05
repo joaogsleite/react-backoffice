@@ -2,6 +2,7 @@ import React, { memo, MouseEvent, FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
 import classes from './style.module.scss';
+import Icon from 'components/Icon';
 
 export interface IButtonProps {
   disabled?: boolean,
@@ -21,7 +22,7 @@ const Button: FC<IButtonProps> = ({
   className = '',
   rounded,
   text,
-  icon,
+  icon = '',
   iconPosition = 'left',
   color,
   position,
@@ -37,27 +38,21 @@ const Button: FC<IButtonProps> = ({
     [className]: className,
   });
 
-  const iconClass = classNames({
-    ['fas fa-'+icon] : icon,
-  });
-
   return (
     <button onClick={onClick} className={wrapperClasses} style={style}>
-      {text ?
-        (icon ? (
-          iconPosition === 'left' ? <>
-            <span className={classes.icon}>
-              <i className={iconClass}></i>&nbsp;&nbsp;
-            </span>
-            <span>{text}</span>
-          </> : <>
-              <span>{text}</span>
-              <span className={classes.icon}>
-                &nbsp;&nbsp;<i className={iconClass}></i>
-              </span>
-          </>
-        ) : <span>{text}</span>)
-      : <i className={iconClass}></i>
+      {text 
+        ? icon 
+          ? iconPosition === 'left' 
+            ? <>
+                <Icon name={icon} />
+                <span>{text}</span>
+              </> 
+            : <>
+                <span>{text}</span>
+                <Icon name={icon} />
+              </>
+          : <span>{text}</span>
+        : <Icon name={icon} />
     }
     </button>
   )

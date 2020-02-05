@@ -6,97 +6,37 @@ import TableRow from './TableRow';
 import style from './style.module.scss';
 
 export interface ITableProps {
-  
+  columns?: Array<{ name: string, label?: string } | string>
 }
 
-const Table: FC<ITableProps> = () => {
-  const columns = [
-    'id',
-    'title',
-    'description',
-  ]
+const Table: FC<ITableProps> = ({ columns = [] }) => {
   const data = {
     id: 1,
     title: 'Example title',
     description: 'Description',
-  }
+  };
+  const actions = {
+    edit: () => undefined,
+    delete: () => undefined,
+  };
+  const fields = columns.map((column) => {
+    return typeof column === 'string'
+      ? column
+      : column.name
+  });
+
   return (
     <table className={style.table}>
-      <TableHead columns={columns} />
+      <TableHead actions={true} columns={columns} />
       <tbody>
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
-        <TableRow columns={columns} data={data} />
+        <TableRow
+          actions={actions}
+          fields={fields}
+          data={data}
+        />
       </tbody>
     </table>
-  )
+  );
 }
 
 export default memo(Table);

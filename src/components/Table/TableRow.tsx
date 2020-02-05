@@ -1,24 +1,27 @@
 import React, { FC, memo } from 'react'
 import ActionButton, { IActionFunction, EActionType } from './ActionButton';
 
+import style from './style.module.scss';
+
 export interface ITableRowProps {
-  columns: string[];
+  fields: string[];
   data: any;
   actions?: {
-    [key in EActionType]: IActionFunction;
+    [key in EActionType]?: IActionFunction;
   };
 };
 
-const TableRow: FC<ITableRowProps> = ({ columns, data, actions = {} }) => {
+const TableRow: FC<ITableRowProps> = ({ fields, data, actions }) => {
   return (
     <tr>
-      {columns.map((column) => (
-        <td>{data[column]}</td>
+      {fields.map((field, index) => (
+        <td key={index}>{data[field]}</td>
       ))}
       {actions && (
-        <td>
-          {(Object.keys(actions) as Array<EActionType>).map((type) => (
+        <td className={style.actions}>
+          {(Object.keys(actions) as Array<EActionType>).map((type, index) => (
             <ActionButton
+              key={index}
               data={data}
               type={type}
               onClick={actions[type]}

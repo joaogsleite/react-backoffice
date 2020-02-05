@@ -30,7 +30,7 @@ const TableHead: FC<ITableHeadProps> = ({ columns, onColumnClick, actions = fals
           </th>
         ))}
         {actions && (
-          <td></td>
+          <th></th>
         )}
       </tr>
     </thead>
