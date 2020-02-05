@@ -17,6 +17,6 @@ const TABLES: ITable[] = [
 ];
 
 mock('GET', '/tables', async () => {
-  await delay(3000);
+  await delay(1000);
   return TABLES;
 });

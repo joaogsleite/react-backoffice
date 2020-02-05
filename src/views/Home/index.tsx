@@ -11,7 +11,9 @@ const Home: FC<IHomeProps> = () => {
 
   return (
     <div className={style.homeContainer}>
-      <Header title="Home view" />
+      <Header fixed title="Welcome" />
+      <p>Please choose a table on the left menu to start</p>
+      <p style={{marginTop: 1000}}>Bottom</p>
     </div>
   );
 }

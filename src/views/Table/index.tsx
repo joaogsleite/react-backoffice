@@ -14,7 +14,7 @@ const Table: FC<ITableProps> = () => {
 
   return (
     <div className={style.tableContainer}>
-      <Header title={`${tableName[0].toUpperCase() + tableName.substr(1)} table`} />
+      <Header fixed title={`${tableName} table`} />
     </div>
   );
 }
