@@ -5,8 +5,16 @@ import { FETCH_TABLES_FULFILLED, FETCH_TABLES_PENDING } from 'reducers/table';
 
 import './table.mock'
 
+export interface IColumn {
+  name: string,
+  layout: {
+    label: string,
+  }
+}
+
 export interface ITable {
   name: string,
+  columns: IColumn[],
   layout: {
     label: string,
   },

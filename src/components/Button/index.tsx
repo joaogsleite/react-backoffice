@@ -1,18 +1,19 @@
 import React, { memo, MouseEvent, FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
+import classes from './style.module.scss';
+
 export interface IButtonProps {
   disabled?: boolean,
   className?: string,
   rounded?: boolean,
   text?: string | ReactNode,
   icon?: string,
-  iconPosition?: string,
+  iconPosition?: 'left' | 'right',
   color?: string,
-  position?: string,
+  position?: 'left' | 'right',
   onClick: ((event: MouseEvent) => void),
   style?: any,
-  primary?: boolean,
 }
 
 const Button: FC<IButtonProps> = ({
@@ -26,41 +27,33 @@ const Button: FC<IButtonProps> = ({
   position,
   onClick,
   style,
-  primary,
 }) => {
 
   const wrapperClasses = classNames({
-    'button': true,
-    ['is-'+color]: color,
-    ['is-pulled-'+position]: position,
-    'is-rounded': rounded,
-    'is-static': disabled,
-    'is-primary': primary,
+    [classes.button]: true,
+    [classes[color || '']]: color,
+    [classes.position]: position,
+    [classes.rounded]: rounded,
     [className]: className,
-  })
+  });
 
   const iconClass = classNames({
     ['fas fa-'+icon] : icon,
-  })
-
-  const wrapperStyle = {
-    ...style,
-    width: (rounded && !text) ? 36 : 'auto', 
-  }
+  });
 
   return (
-    <button onClick={onClick} className={wrapperClasses} style={wrapperStyle}>
+    <button onClick={onClick} className={wrapperClasses} style={style}>
       {text ?
         (icon ? (
           iconPosition === 'left' ? <>
-            <span className="icon">
-              <i className={iconClass}></i>&nbsp;
+            <span className={classes.icon}>
+              <i className={iconClass}></i>&nbsp;&nbsp;
             </span>
             <span>{text}</span>
           </> : <>
               <span>{text}</span>
-              <span className="icon">
-                &nbsp;<i className={iconClass}></i>
+              <span className={classes.icon}>
+                &nbsp;&nbsp;<i className={iconClass}></i>
               </span>
           </>
         ) : <span>{text}</span>)
@@ -70,4 +63,4 @@ const Button: FC<IButtonProps> = ({
   )
 }
 
-export default memo(Button)
+export default memo(Button);

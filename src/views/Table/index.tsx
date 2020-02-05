@@ -1,22 +1,25 @@
 import React, { FC, memo } from 'react';
-
-import Header from 'components/Header';
-import style from './style.module.scss';
 import { useParams } from 'react-router-dom';
+
+import Title from 'components/Title';
+import Table from 'components/Table';
+
+import style from './style.module.scss';
 
 export interface ITableProps {
 
 };
 
-const Table: FC<ITableProps> = () => {
+const TableView: FC<ITableProps> = () => {
 
   const { tableName = '' } = useParams()
 
   return (
     <div className={style.tableContainer}>
-      <Header fixed title={`${tableName} table`} />
+      <Title fixed>{`${tableName} table`}</Title>
+      <Table />
     </div>
   );
 }
 
-export default memo(Table);
+export default memo(TableView);

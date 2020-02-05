@@ -1,7 +1,9 @@
+@import "~style/variables.scss";
+
 .topMenu {
   position: fixed;
   width: 100%;
-  border-bottom: 1px solid #ddd;
+  border-bottom: $default-border;
   height: 70px;
   background: white;
 }

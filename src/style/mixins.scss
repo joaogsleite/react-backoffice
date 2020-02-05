@@ -3,6 +3,8 @@
 @mixin color-variants {
   &.danger {
     background-color: $danger;
+    color: white;
+    border: none;
   }
   &.warning {
     background-color: $warning;
@@ -12,6 +14,7 @@
   }
   &.success {
     background-color: $success;
+    color: white;
   }
 }
 

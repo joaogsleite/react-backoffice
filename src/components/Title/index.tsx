@@ -3,22 +3,20 @@ import classNames from 'classnames'
 
 import style from './style.module.scss'
 
-export interface IHeaderProps {
-  title: string,
-  children?: ReactNode,
+export interface ITitleProps {
+  children?: string,
   className?: string,
   fixed?: boolean,
 }
-const Header: FC<IHeaderProps> = ({ title, children, className = '', fixed = false }) => {
+const Title: FC<ITitleProps> = ({ children, className = '', fixed = false }) => {
   const headerClasses = classNames({
-    [style.headerContainer]: true,
+    [style.title]: true,
     [className]: className,
     [style.fixed]: fixed,
   })
   return <>
     <div className={headerClasses}>
-      <h1>{title}</h1>
-      {children}
+      <h1>{children}</h1>
     </div>
     {fixed && (
       <div className={style.headerSpace}></div>
@@ -26,4 +24,4 @@ const Header: FC<IHeaderProps> = ({ title, children, className = '', fixed = fal
   </>
 }
 
-export default memo(Header)
+export default memo(Title)

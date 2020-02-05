@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Header from './index';
+import Title from './index';
 
-test('renders Header component', () => {
+test('renders Title component', () => {
   const { getByText } = render(
-    <Header title='Hello world' />
+    <Title>Hello world</Title>
   );
   const element = getByText(/Hello world/i);
   expect(element).toBeInTheDocument();

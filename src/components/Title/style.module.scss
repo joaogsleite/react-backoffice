@@ -1,5 +1,5 @@
 
-.headerContainer {
+.title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -7,7 +7,8 @@
   margin-bottom: 20px;
   &.fixed {
     position: fixed;
-    margin-top: -74px;
+    top: -3px;
+    left: 280px;
   }
   & > h1 {
     font-size: 2rem;
@@ -20,5 +21,5 @@
 }
 
 .headerSpace {
-  height: 10px;
+  height: 30px;
 }

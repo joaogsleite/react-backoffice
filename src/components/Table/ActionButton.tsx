@@ -1,0 +1,45 @@
+import React, { FC, memo, useCallback, MouseEvent } from 'react';
+import Button, { IButtonProps } from 'components/Button';
+import { IPKs } from 'types/table';
+
+export enum EActionType {
+  edit = 'edit',
+  delete = 'delete',
+};
+
+export interface IActionFunction{
+  (data: any): void
+}
+
+export interface IActionButtonProps {
+  data: any,
+  type: EActionType,
+  onClick?: IActionFunction,
+};
+
+function getButtonProps(type: EActionType): Partial<IButtonProps> {
+  switch(type) {
+    case EActionType.edit:
+      return { icon: 'edit', text: 'Edit' };
+    case EActionType.delete:
+      return { icon: 'times', text: 'Delete' };
+    default:
+      return { icon: 'action', text: 'view' };
+  }
+}
+
+const ActionButton: FC<IActionButtonProps> = ({ data, type, onClick }) => {
+  const handleClick = useCallback(() => {
+    if (onClick) {
+      onClick(data);
+    }
+  }, [onClick, data])
+  return (
+    <Button
+      {...getButtonProps(type)}
+      onClick={handleClick}
+    />
+  )
+}
+
+export default memo(ActionButton);
