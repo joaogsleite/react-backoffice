@@ -20,10 +20,10 @@ const TableView: FC<ITableProps> = () => {
 
   return (
     <div className={style.tableContainer}>
-      <Title fixed>{`${tableName} table`}</Title>
+      <Title fixed>{table.title()}</Title>
       {loading
         ? <Message loading />
-        : table && <Table columns={table.columns} />
+        : table && <Table columns={table.columns()} />
       }
     </div>
   );

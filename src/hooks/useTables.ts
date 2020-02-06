@@ -9,10 +9,10 @@ export default function() {
   const loading = useSelector((state) => state.loadingTables)
 
   useEffect(() => {
-    if (tables.length === 0) {
+    if (tables.length === 0 && !loading) {
       table.list()
     }
-  }, [tables])
+  }, [tables, loading])
 
   return { tables, loading }
 }

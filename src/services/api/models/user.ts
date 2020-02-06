@@ -2,8 +2,7 @@ import api, { API } from 'services/api';
 import { dispatch } from 'reducers';
 import HttpError from '../HttpError';
 import { FETCH_USER_FULFILLED } from 'reducers/user';
-
-import './user.mock'
+import { delay } from 'utils/index';
 
 export interface IUser {
   id?: number,
@@ -19,9 +18,10 @@ class User {
     this.api = api;
   }
 
-  me() {
+  async me() {
     dispatch({ type : 'FETCH_USER_PENDING' });
-    return this.api.get('/users/me').then((user: IUser) => {
+    await delay(100)
+    return await this.api.get('/users/me').then((user: IUser) => {
       if (user && user.id) {
         dispatch({ 
           type: FETCH_USER_FULFILLED, 

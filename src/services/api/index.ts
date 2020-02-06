@@ -1,6 +1,8 @@
 import { API_ADDRESS } from 'constants/api';
 import HttpError from './HttpError';
 
+import './mock'
+
 type FetchMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export class API {

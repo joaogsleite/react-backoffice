@@ -1,5 +1,5 @@
 import { IUser } from "./user"
-import mock, { delay } from "../mock"
+import mock from "../mock"
 
 const USER: IUser = {
   id: 1,
@@ -8,7 +8,6 @@ const USER: IUser = {
 }
 
 mock('GET', '/users/me', async () => {
-  await delay(3000)
   return USER
 })
 

@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom';
 import RootView from 'views/Root';
 import { Provider } from './reducers';
 
-import 'services/api/mock';
 import 'style/index.scss';
 
 const App: React.FC = () => (

@@ -1,42 +1,51 @@
-import { MOCK_ENABLED } from "constants/mock"
 import { API_ADDRESS } from "constants/api"
+import createMatcher, { PathMatch, IMatchParams } from 'path-match'
+import { delay } from "utils";
+import { API_MOCK_ENABLED } from 'constants/api';
 
-type MockedFetch = ((url: RequestInfo, options?: RequestInit) => Promise<any>)
+type MockedFetch = ((url: RequestInfo, params: IMatchParams, options?: RequestInit) => Promise<any>);
 
-export interface IMockEndpoints {
-  [key: string]: {
-    [key: string]: MockedFetch,
-  },
-}
+type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
-const endpoints: IMockEndpoints = {}
+export interface IMockRoute {
+  method: Method, 
+  match: PathMatch;
+  func: MockedFetch,
+};
 
-export default function mock(method: string, url: string, func: MockedFetch) {
-  if (!endpoints[url]) {
-    endpoints[url] = {}
-  }
-  endpoints[url][method] = func
-}
+const routes: IMockRoute[] = [];
 
-export function delay(ms: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  })
+export default function mock(method: Method, url: string, func: MockedFetch) {
+  const match = createMatcher()(url);
+  routes.push({ method, match, func });
 }
 
 export const originalFetch = window.fetch
 
-if (MOCK_ENABLED) {
-  window.fetch = (url: RequestInfo, options: RequestInit = {}) => {
+if (API_MOCK_ENABLED) {
+  
+  // mocks enabled
+  import('./models/table.mock')
+  import('./models/user.mock')
+  
+  // override fetch API
+  window.fetch = async (url: RequestInfo, options: RequestInit = {}) => {
+    await delay(500);
     if (typeof url === 'string') {
       const method = options.method || 'GET';
       const path = url.replace(API_ADDRESS, '')
-      if (endpoints[path] && endpoints[path][method]) {
-        return endpoints[path][method](url, options).then((response) => {
+      for (const route of routes) {
+        const result = route.match(path)
+        if (result && route.method === method) {
+          const params: IMatchParams = typeof result === 'boolean'
+            ? {}
+            : result
+          const response = await route.func(url, params, options)
           return new Response(JSON.stringify(response))
-        })
+        }
       }
     }
-    return originalFetch(url, options)
+    return await originalFetch(url, options)
   }
 }
+

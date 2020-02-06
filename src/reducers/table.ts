@@ -16,7 +16,7 @@ export interface ITableState extends IBaseState {
 
 export const initialState: ITableState = {
   tables: [],
-  loadingTables: true,
+  loadingTables: false,
   error: false,
 };
 

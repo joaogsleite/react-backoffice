@@ -3,12 +3,14 @@ import { dispatch } from 'reducers';
 import HttpError from '../HttpError';
 import { FETCH_TABLES_FULFILLED, FETCH_TABLES_PENDING, FETCH_TABLE_PENDING, FETCH_TABLE_FULFILLED, FETCH_TABLE_REJECTED, FETCH_TABLES_REJECTED } from 'reducers/table';
 
-import './table.mock'
-
 export interface IColumn {
   name: string,
+  model?: {
+    isPk?: boolean,
+  },
   layout: {
-    label: string,
+    isTitle?: boolean,
+    label?: string,
   }
 }
 

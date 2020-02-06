@@ -1,13 +1,15 @@
+import { ITable, IColumn } from "services/api/models/table";
 
-export interface ITableConfig {
-  name: string,
-  visible: boolean,
+export const emptyTableConfig: ITable = {
+  name: '',
+  columns: [],
   layout: {
-    label: string,
-    listPage: any,
-  }
-}
+    label: '',
+  },
+};
 
-export function isVisibleInSideMenu(table: ITableConfig): boolean {
-  return table.visible && (table.layout && table.layout.listPage) !== false
+export const emptyColumnConfig: IColumn = {
+  name: '',
+  model: {},
+  layout: {},
 }
