@@ -43,11 +43,9 @@ export class TableConfig {
 
   itemTitle(item: any) {
     const column = this.titleColumn()
-    if (column && column.name) {
-      return item[column.name]
-    } else {
-      return this.itemPK(item)
-    }
+    return column && column.name
+      ? item[column.name]
+      : this.itemPK(item)
   }
 }
 
@@ -59,16 +57,20 @@ export default function(tableName: string) {
     })
   })
 
-  const loading = useSelector((state) => state.loadingTables)
+  const loadingTables = useSelector((state) => {
+    return state.loadingTables
+  })
+
+  const loading = loadingTables || !table || table.loading
 
   useEffect(() => {
-    if (!table || (!table.loading && !table.columns)) {
+    if (!table?.columns && !loading) {
       tableService.config(tableName)
     }
-  }, [table, tableName])
+  }, [table, loading, tableName])
 
   return { 
     table: new TableConfig(table),
-    loading: loading || !table || table.loading,
+    loading,
   }
 }

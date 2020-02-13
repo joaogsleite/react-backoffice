@@ -30,7 +30,7 @@ if (API_MOCK_ENABLED) {
   
   // override fetch API
   window.fetch = async (url: RequestInfo, options: RequestInit = {}) => {
-    await delay(500);
+    await delay(300);
     if (typeof url === 'string') {
       const method = options.method || 'GET';
       const path = url.replace(API_ADDRESS, '')

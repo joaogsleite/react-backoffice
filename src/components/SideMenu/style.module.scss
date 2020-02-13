@@ -1,4 +1,5 @@
 @import "~style/variables";
+@import "~style/mixins";
 
 .brandContainer {
   position: absolute;
@@ -9,6 +10,9 @@
 .sideMenuSpace {
   transition: margin-left 0.5s;
   width: 250px;
+  @include breakpoint(mobile) {
+    display: none;
+  }
 }
 
 .sideMenu {
@@ -57,6 +61,9 @@
     height: auto;
     filter: brightness(0) invert(1);
   }
+  @include breakpoint(mobile) {
+    display: none;
+  }
 }
 
 .hamburgerCheckbox {
@@ -78,4 +85,7 @@
   padding: 0 20px;
   color: white;
   cursor: pointer;
+  @include breakpoint(mobile) {
+    color: black;
+  }
 }
