@@ -3,7 +3,7 @@ import user, { IUser } from 'services/api/models/user';
 class Auth {
 
   private user?: IUser;
-  private authenticated: boolean = false;
+  private authenticated: boolean = true;
 
   constructor() {
     const username = localStorage.getItem('username') || undefined;
@@ -20,7 +20,7 @@ class Auth {
         localStorage.removeItem('username');
       })
     } else {
-      this.authenticated = false;
+      this.authenticated = true;
     }
   }
 
