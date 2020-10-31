@@ -14,8 +14,8 @@ export interface ITableProps {
 
 const TableView: FC<ITableProps> = () => {
 
-  const { tableName = '' } = useParams()
-
+  const { tableName = '' } = useParams<any>()
+  
   const { table, loading } = useTableConfig(tableName)
 
   return (
