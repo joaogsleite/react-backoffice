@@ -49,28 +49,40 @@ export class TableConfig {
   }
 }
 
-export default function useTableConfig(tableName: string) {
+let previousTableName = ''
 
-  const table = useSelector((state) => {
-    return state.tables.find((t) => {
-      return t.name === tableName
-    })
+export default function useTableData(tableName: string) {
+
+  const tableData = useSelector((state) => {
+    return state.tableData
   })
 
-  const loadingTables = useSelector((state) => {
-    return state.loadingTables
+  const errorTableData = useSelector((state) => {
+    return state.errorTableData
   })
 
-  const loading = loadingTables || !table || table.loading
+  const loadingTableData = useSelector((state) => {
+    return state.loadingTableData
+  })
 
+  const tableConfig = useSelector((state) => {
+    return state.tables.find(
+      (table) => table.name === tableName
+    )
+  })
   useEffect(() => {
-    if (!table?.columns && !loading) {
-      tableService.config(tableName)
+    if ((!tableData || tableName !== previousTableName) && !loadingTableData && tableConfig) {
+      previousTableName = tableName
+      tableService.getTableData(tableConfig, {
+        skip: 0,
+        take: 10
+      })
     }
-  }, [table, loading, tableName])
+  }, [tableData, loadingTableData, tableName, tableConfig])
 
   return { 
-    table: new TableConfig(table),
-    loadingTableConfig: loading,
+    tableData: tableData || [],
+    loadingTableData,
+    errorTableData,
   }
 }

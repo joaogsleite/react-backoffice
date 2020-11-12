@@ -1,11 +1,12 @@
 import React, { FC, memo } from 'react'
+import { TTableData } from 'reducers/table';
 import ActionButton, { IActionFunction, EActionType } from './ActionButton';
 
 import style from './style.module.scss';
 
 export interface ITableRowProps {
   fields: string[];
-  data: any;
+  data: TTableData;
   actions?: {
     [key in EActionType]?: IActionFunction;
   };
