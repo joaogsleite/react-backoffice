@@ -39,7 +39,7 @@ class User {
       username,
       password,
     }
-    return this.api.post('/auth/local', data).then((user: IUser) => {
+    return this.api.post('/auth/local', { body: JSON.stringify(data)}).then((user: IUser) => {
       if (user.id) {
         dispatch({ 
           type: FETCH_USER_FULFILLED, 

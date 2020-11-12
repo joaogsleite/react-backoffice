@@ -2,7 +2,7 @@ import recost from 'recost'
 import logger from 'recost-logger'
 
 import user, { initialState as userInitialState, IUserState } from './user'
-import table, { initialState as tableInitialState, ITableState } from './table'
+import { tableReducer, initialState as tableInitialState, ITableState } from './table'
 
 interface IState extends IUserState, ITableState {}
 
@@ -13,7 +13,7 @@ const initialState: IState = {
 
 const reducers = [
   user,
-  table,
+  tableReducer,
 ]
 
 const middlewares = [

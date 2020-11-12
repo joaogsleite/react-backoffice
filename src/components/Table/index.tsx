@@ -4,17 +4,16 @@ import TableHead from './TableHead';
 import TableRow from './TableRow';
 
 import style from './style.module.scss';
+import { TTableData } from 'reducers/table';
+import Message from 'components/Message';
 
 export interface ITableProps {
   columns?: Array<{ name: string, label?: string } | string>
+  tableData: TTableData[]
+  loadingTableData: boolean
 }
 
-const Table: FC<ITableProps> = ({ columns = [] }) => {
-  const data = {
-    id: 1,
-    title: 'Example title',
-    description: 'Description',
-  };
+const Table: FC<ITableProps> = ({ columns = [], tableData, loadingTableData }) => {
   const actions = {
     edit: () => undefined,
     delete: () => undefined,
@@ -29,11 +28,27 @@ const Table: FC<ITableProps> = ({ columns = [] }) => {
     <table className={style.table}>
       <TableHead actions={true} columns={columns} />
       <tbody>
-        <TableRow
-          actions={actions}
-          fields={fields}
-          data={data}
-        />
+        {(
+          loadingTableData && (
+            <tr>
+              <td colSpan={columns.length}>
+                <Message loading />
+              </td>
+            </tr>
+          )
+        ) || (
+          !loadingTableData && (
+            tableData.map(
+              (data) => (
+                <TableRow
+                  actions={actions}
+                  fields={fields}
+                  data={data}
+                />
+              )
+            )
+          )
+        )}
       </tbody>
     </table>
   );

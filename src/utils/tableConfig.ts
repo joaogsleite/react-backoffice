@@ -10,6 +10,15 @@ export const emptyTableConfig: ITable = {
 
 export const emptyColumnConfig: IColumn = {
   name: '',
-  model: {},
+  searchable: false,
+  visible: {
+    list: false,
+    detail: false,
+    relation: false,
+  },
+  model: {
+    type: '',
+    allowNull: true,
+  },
   layout: {},
 }

@@ -3,7 +3,7 @@ import { useSelector } from "reducers"
 
 import table from 'services/api/models/table'
 
-export default function() {
+export default function useTables() {
 
   const tables = useSelector((state) => state.tables)
   const loading = useSelector((state) => state.loadingTables)
