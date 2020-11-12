@@ -68,7 +68,7 @@ export function tableReducer(state: ITableState, action: IAction) {
       }))
       return {
         ...state,
-        loadingTables: tables.length === 0,
+        loadingTables: true,
         tables,
       }
 
@@ -87,15 +87,15 @@ export function tableReducer(state: ITableState, action: IAction) {
     case FETCH_TABLE_FULFILLED:
       if (tables.length === 0) {
         tables = [action.payload]
-      } else {
-        tables = tables.map((table: ITable) => {
-          return table.name === action.payload.name
-            ? { ...table, loading: false, ...action.payload }
-            : { ...table, loading: false }
-        })
       }
+      tables = tables.map((table: ITable) => {
+        return table.name === action.payload.name
+          ? { ...table, loading: false, ...action.payload }
+          : { ...table, loading: false }
+      })
       return {
         ...state,
+        loadingTables: false,
         tables,
       }
 

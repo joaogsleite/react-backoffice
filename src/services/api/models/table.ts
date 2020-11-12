@@ -52,7 +52,12 @@ class Table {
     dispatch({ type : FETCH_TABLES_PENDING })
     return this.api.post('/?', {
       body: JSON.stringify({
-        query: `query {entities}`,
+        query: `query {
+          entities {
+            name
+            layout
+          }
+        }`,
         variables: null
       })
     }).then(

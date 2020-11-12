@@ -19,7 +19,8 @@ const TableView: FC<ITableProps> = () => {
   
   const { table, loadingTableConfig } = useTableConfig(tableName)
   const { tableData, loadingTableData, errorTableData } = useTableData(tableName)
-
+  console.log('loadingTableData', loadingTableData)
+  console.log('loadingTableConfig', loadingTableConfig)
   return (
     <div className={style.tableContainer}>
       <Title fixed>{table.title()}</Title>

@@ -61,16 +61,14 @@ export default function useTableConfig(tableName: string) {
     return state.loadingTables
   })
 
-  const loading = loadingTables || !table || table.loading
-
   useEffect(() => {
-    if (!table?.columns && !loading) {
+    if (!table?.columns && !loadingTables) {
       tableService.config(tableName)
     }
-  }, [table, loading, tableName])
+  }, [table, loadingTables, tableName])
 
   return { 
     table: new TableConfig(table),
-    loadingTableConfig: loading,
+    loadingTableConfig: loadingTables,
   }
 }

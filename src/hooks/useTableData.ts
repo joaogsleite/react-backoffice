@@ -71,7 +71,7 @@ export default function useTableData(tableName: string) {
     )
   })
   useEffect(() => {
-    if ((!tableData || tableName !== previousTableName) && !loadingTableData && tableConfig) {
+    if ((!tableData || tableName !== previousTableName) && !loadingTableData && tableConfig?.columns) {
       previousTableName = tableName
       tableService.getTableData(tableConfig, {
         skip: 0,
