@@ -5,7 +5,7 @@ import tableService, { ITable, IColumn }  from 'services/api/models/table'
 import { emptyTableConfig, emptyColumnConfig } from 'utils/tableConfig'
 
 export class TableConfig {
-  private config: ITable
+  config: ITable
   private fields: IColumn[]
 
   constructor(config?: ITable) {
@@ -57,9 +57,7 @@ export default function useTableConfig(tableName: string) {
     })
   })
 
-  const loadingTables = useSelector((state) => {
-    return state.loadingTables
-  })
+  const loadingTables = table ? table.loading : true
 
   useEffect(() => {
     if (!table?.columns && !loadingTables) {

@@ -8,10 +8,11 @@ import {
   FETCH_TABLE_FULFILLED,
   FETCH_TABLE_REJECTED,
   FETCH_TABLES_REJECTED,
-  FETCH_TABLEDATA_FULFILLED,
-  FETCH_TABLEDATA_PENDING,
-  FETCH_TABLEDATA_REJECTED
+  FETCH_TABLE_ENTRIES_FULFILLED,
+  FETCH_TABLE_ENTRIES_PENDING,
+  FETCH_TABLE_ENTRIES_REJECTED
 } from 'reducers/table'
+import { FETCH_ENTRY_FULFILLED, FETCH_ENTRY_PENDING, FETCH_ENTRY_REJECTED } from 'reducers/entry'
 
 export interface IColumn {
   name: string,
@@ -40,6 +41,8 @@ export interface ITable {
     label: string,
   },
 }
+
+export interface PKS extends Record<string, string | number> {}
 
 class Table {
   private api: API
@@ -123,7 +126,7 @@ class Table {
       skip: 0,
       take: 10
     }) {
-    dispatch({ type: FETCH_TABLEDATA_PENDING })
+    dispatch({ type: FETCH_TABLE_ENTRIES_PENDING })
     return this.api.post('/', {
       body: JSON.stringify({
         query: `query {
@@ -142,22 +145,83 @@ class Table {
         if (body.data && body.data[table.name]) {
           const data = body.data[table.name]
           dispatch({ 
-            type: FETCH_TABLEDATA_FULFILLED,
+            type: FETCH_TABLE_ENTRIES_FULFILLED,
             payload: data,
           })
           return data
         }
         dispatch({ 
-          type: FETCH_TABLEDATA_FULFILLED,
+          type: FETCH_TABLE_ENTRIES_FULFILLED,
           payload: [],
         })
         return []
       }
     ).catch(
       (errors) => {
-        dispatch({ type: FETCH_TABLEDATA_REJECTED, payload: errors[0].message })
+        dispatch({ type: FETCH_TABLE_ENTRIES_REJECTED, payload: errors[0].message })
       }
     )
+  }
+
+  getEntry(
+    table: ITable,
+    pks: PKS) {
+    dispatch({ type: FETCH_ENTRY_PENDING })
+    return this.api.post('/', {
+      body: JSON.stringify({
+        query: `query {
+          ${table.name} (filter: ${this.filterByPks(pks)}){
+            ${table.columns?.filter(
+              (column) => column.visible.detail
+            ).map(
+              (column) => column.name
+            )}
+          }
+        }`
+      })
+    }).then(
+      (body) => {
+        if (body.errors) {
+          throw body.errors
+        }
+        if (body.data && body.data[table.name]) {
+          const data = body.data[table.name]
+          dispatch({ 
+            type: FETCH_ENTRY_FULFILLED,
+            payload: data,
+          })
+          return data
+        }
+        dispatch({ 
+          type: FETCH_ENTRY_FULFILLED,
+          payload: [],
+        })
+        return []
+      }
+    ).catch(
+      (error) => {
+        const errorMessage = error.body
+          ? error.body.errors
+          : Array.isArray(error)
+            ? error[0].message
+            : error.message
+        dispatch({ type: FETCH_ENTRY_REJECTED, payload: errorMessage  })
+      }
+    )
+  }
+
+  private filterByPks(pks: PKS) {
+    let resultFilter: string = ''
+    Object.keys(pks).forEach(
+      (pk) => {
+        resultFilter += `{
+          ${pk}: {
+            _eq: ${pks[pk]}
+          }
+        }`
+      }
+    )
+    return resultFilter
   }
 }
 

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
-import RootView from 'views/Root';
+import { Root } from 'views/Root';
 import { Provider } from './reducers';
 
 import 'style/index.scss';
@@ -11,7 +11,7 @@ import 'style/index.scss';
 const App: React.FC = () => (
   <Provider>
     <BrowserRouter>
-      <RootView />
+      <Root />
     </BrowserRouter>
   </Provider>
 );

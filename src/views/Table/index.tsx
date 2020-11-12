@@ -8,6 +8,7 @@ import style from './style.module.scss'
 import useTableConfig from 'hooks/useTableConfig'
 import Message from 'components/Message'
 import useTableData from 'hooks/useTableData'
+import useEntryData from 'hooks/useEntryData'
 
 export interface ITableProps {
 
@@ -19,8 +20,7 @@ const TableView: FC<ITableProps> = () => {
   
   const { table, loadingTableConfig } = useTableConfig(tableName)
   const { tableData, loadingTableData, errorTableData } = useTableData(tableName)
-  console.log('loadingTableData', loadingTableData)
-  console.log('loadingTableConfig', loadingTableConfig)
+  console.log(useEntryData(tableName, {id: tableData[0]?.id}))
   return (
     <div className={style.tableContainer}>
       <Title fixed>{table.title()}</Title>

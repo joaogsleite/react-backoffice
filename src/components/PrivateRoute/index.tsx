@@ -1,6 +1,6 @@
 import React, { FC, ComponentType } from 'react'
 import { Route, useLocation } from 'react-router-dom'
-import renderContent from './renderContent'
+import { renderContent } from './renderContent'
 
 export interface IPrivateRoute {
   component?: ComponentType<any>,
