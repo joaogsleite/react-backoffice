@@ -8,7 +8,7 @@ on:
 env:
   REACT_APP_API_URL: http://localhost:3004
   PUBLIC_URL: /react-backoffice/
-  REACT_APP_PUBLIC_URL: /react-backoffice/
+  REACT_APP_PUBLIC_URL: /react-backoffice
 
 jobs:
   build:
