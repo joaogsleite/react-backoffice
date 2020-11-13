@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-backoffice"]=this["webpackJsonpreact-backoffice"]||[]).push([[5],{80:function(c,e,n){},84:function(c,e,n){"use strict";n.r(e);var i=n(1),t=n(0),a=n(80),o=n.n(a),s=function(){return Object(i.jsx)("div",{className:o.a.loginContainer,children:"Login view"})};e.default=Object(t.memo)(s)}}]);
+//# sourceMappingURL=5.15d98056.chunk.js.map
