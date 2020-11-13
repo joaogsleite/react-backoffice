@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  REACT_APP_API_URL: http://funfunz.tk/api
+  REACT_APP_API_URL: https://joaogsleite.github.io/react-backoffice/api
   PUBLIC_URL: /react-backoffice/
 
 jobs:
