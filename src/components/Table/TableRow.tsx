@@ -1,16 +1,16 @@
 import React, { FC, memo } from 'react'
-import { TTableData } from 'reducers/table';
-import ActionButton, { IActionFunction, EActionType } from './ActionButton';
+import { TEntry } from 'reducers/entry'
+import ActionButton, { IActionFunction, EActionType } from './ActionButton'
 
-import style from './style.module.scss';
+import style from './style.module.scss'
 
 export interface ITableRowProps {
-  fields: string[];
-  data: TTableData;
+  fields: string[]
+  data: TEntry
   actions?: {
-    [key in EActionType]?: IActionFunction;
-  };
-};
+    [key in EActionType]?: IActionFunction
+  }
+}
 
 const TableRow: FC<ITableRowProps> = ({ fields, data, actions }) => {
   return (
@@ -34,4 +34,4 @@ const TableRow: FC<ITableRowProps> = ({ fields, data, actions }) => {
   )
 }
 
-export default memo(TableRow);
+export default memo(TableRow)

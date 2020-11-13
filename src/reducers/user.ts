@@ -11,8 +11,7 @@ export const initialState: IUserState = {
   user: undefined,
 };
 
-export default function(state: IUserState, action: IAction) {
-  console.log('action user')
+export function userReducer(state: IUserState, action: IAction) {
   switch(action.type) {
     case FETCH_USER_FULFILLED:
       return {

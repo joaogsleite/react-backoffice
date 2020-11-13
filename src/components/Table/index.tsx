@@ -1,15 +1,15 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo } from 'react'
 
-import TableHead from './TableHead';
-import TableRow from './TableRow';
+import TableHead from './TableHead'
+import TableRow from './TableRow'
 
-import style from './style.module.scss';
-import { TTableData } from 'reducers/table';
-import Message from 'components/Message';
+import style from './style.module.scss'
+import Message from 'components/Message'
+import { TEntry } from 'reducers/entry'
 
 export interface ITableProps {
   columns?: Array<{ name: string, label?: string } | string>
-  tableData: TTableData[]
+  tableData: TEntry[]
   loadingTableData: boolean
 }
 
@@ -17,12 +17,12 @@ const Table: FC<ITableProps> = ({ columns = [], tableData, loadingTableData }) =
   const actions = {
     edit: () => undefined,
     delete: () => undefined,
-  };
+  }
   const fields = columns.map((column) => {
     return typeof column === 'string'
       ? column
       : column.name
-  });
+  })
 
   return (
     <table className={style.table}>
@@ -39,8 +39,9 @@ const Table: FC<ITableProps> = ({ columns = [], tableData, loadingTableData }) =
         ) || (
           !loadingTableData && (
             tableData.map(
-              (data) => (
+              (data, index) => (
                 <TableRow
+                  key={index}
                   actions={actions}
                   fields={fields}
                   data={data}
@@ -51,7 +52,7 @@ const Table: FC<ITableProps> = ({ columns = [], tableData, loadingTableData }) =
         )}
       </tbody>
     </table>
-  );
+  )
 }
 
-export default memo(Table);
+export default memo(Table)

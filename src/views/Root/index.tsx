@@ -10,7 +10,7 @@ const Table = lazy(() => import('views/Table'));
 const Login = lazy(() => import('views/Login'));
 const Logout = lazy(() => import('views/Logout'));
 
-export default function () {
+export function Root() {
   return (
     <Suspense fallback={<Loading />}>
       <Route exact path="/login" component={Login} />

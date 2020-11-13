@@ -1,7 +1,8 @@
 declare module 'recost-logger' {
   type MiddlewareFunc = ((state: State, action: IAction, dispatcher?: Dispatcher) => void)
-  export default {
+  const logger = {
     before: MiddlewareFunc,
     after: MiddlewareFunc,
   }
+  export default logger
 }
