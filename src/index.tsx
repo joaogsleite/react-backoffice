@@ -10,7 +10,7 @@ import 'style/index.scss';
 
 const App: React.FC = () => (
   <Provider>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
       <Root />
     </BrowserRouter>
   </Provider>
