@@ -1,14 +1,10 @@
-import React, { FC, memo } from 'react';
-import style from './style.module.scss';
+import React, { FC, memo } from "react";
+import "./styles.scss";
 
-export interface ILogoutProps {};
+export interface ILogoutProps {}
 
 const Logout: FC<ILogoutProps> = () => {
-  return (
-    <div className={style.logoutContainer}>
-      Logout view
-    </div>
-  );
-}
+  return <div className="logout__container">Logout view</div>;
+};
 
 export default memo(Logout);

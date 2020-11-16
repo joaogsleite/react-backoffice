@@ -1,27 +1,25 @@
-import React, { FC, memo } from 'react'
-import classNames from 'classnames'
+import React, { FC, memo } from "react";
+import classNames from "classnames";
 
-import style from './style.module.scss'
+import "./styles.scss";
 
 export interface ITitleProps {
-  children?: string,
-  className?: string,
-  fixed?: boolean,
+  children?: string;
+  className?: string;
+  fixed?: boolean;
 }
-const Title: FC<ITitleProps> = ({ children, className = '', fixed = false }) => {
-  const headerClasses = classNames({
-    [style.title]: true,
-    [className]: className,
-    [style.fixed]: fixed,
-  })
-  return <>
-    <div className={headerClasses}>
-      <h1>{children}</h1>
-    </div>
-    {fixed && (
-      <div className={style.headerSpace}></div>
-    )}
-  </>
-}
+const Title: FC<ITitleProps> = ({ children, fixed = false }) => {
+  const headerClasses = classNames("title", {
+    fixed: fixed,
+  });
+  return (
+    <>
+      <div className={headerClasses}>
+        <h1>{children}</h1>
+      </div>
+      {fixed && <div className="headerSpace"></div>}
+    </>
+  );
+};
 
-export default memo(Title)
+export default memo(Title);

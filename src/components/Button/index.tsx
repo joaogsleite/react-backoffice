@@ -1,61 +1,46 @@
-import React, { memo, MouseEvent, FC, ReactNode } from 'react'
-import classNames from 'classnames'
-
-import classes from './style.module.scss';
-import Icon from 'components/Icon';
+import { useModifier } from "hooks/useModifier";
+import React, { memo, MouseEvent, FC } from "react";
+import "./styles.scss";
 
 export interface IButtonProps {
-  disabled?: boolean,
-  className?: string,
-  rounded?: boolean,
-  text?: string | ReactNode,
-  icon?: string,
-  iconPosition?: 'left' | 'right',
-  color?: string,
-  position?: 'left' | 'right',
-  onClick: ((event: MouseEvent) => void),
-  style?: any,
+  label?: string | JSX.Element;
+  prefix?: string | JSX.Element;
+  suffix?: string | JSX.Element;
+  modifier?: string;
+  disabled?: boolean;
+  onClick: (event: MouseEvent) => void;
 }
 
 const Button: FC<IButtonProps> = ({
   disabled,
-  className = '',
-  rounded,
-  text,
-  icon = '',
-  iconPosition = 'left',
-  color,
-  position,
+  prefix,
+  label,
+  suffix,
+  modifier,
   onClick,
-  style,
+  children,
 }) => {
-
-  const wrapperClasses = classNames({
-    [classes.button]: true,
-    [classes[color || '']]: color,
-    [classes.position]: position,
-    [classes.rounded]: rounded,
-    [className]: className,
+  const stylesCN = useModifier("button", modifier, {
+    "button--disabled": disabled,
   });
 
   return (
-    <button onClick={onClick} className={wrapperClasses} style={style}>
-      {text 
-        ? icon 
-          ? iconPosition === 'left' 
-            ? <>
-                <Icon name={icon} />
-                <span>{text}</span>
-              </> 
-            : <>
-                <span>{text}</span>
-                <Icon name={icon} />
-              </>
-          : <span>{text}</span>
-        : <Icon name={icon} />
-    }
+    <button
+      className={stylesCN}
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {prefix ? (
+        <span className="button__prefix-container">{prefix}</span>
+      ) : null}
+      {label ? <span className="button__label"> {label} </span> : null}
+      {suffix ? (
+        <span className="button__suffix-container">{suffix}</span>
+      ) : null}
+      {children}
     </button>
-  )
-}
+  );
+};
 
 export default memo(Button);

@@ -1,44 +1,29 @@
-import React, { memo, FC, ReactNode } from 'react'
-import classNames from 'classnames'
-
-import style from './style.module.scss';
-import Button from 'components/Button';
+import React, { memo, FC, ReactNode } from "react";
+import classNames from "classnames";
+import Button from "components/Button";
+import Icon from "components/Icon";
+import "./styles.scss";
+import { useModifier } from "hooks/useModifier";
 
 export interface IToastProps {
-  title?: string,
-  children: ReactNode,
-  onDismiss: (() => void),
-  info?: boolean,
-  error?: boolean,
-  warning?: boolean,
-  success?: boolean,
-  visible?: boolean,
+  title?: string;
+  children: ReactNode;
+  onDismiss: () => void;
+  modifier?: string;
 }
 
-const Toast: FC<IToastProps> = ({ title, children, onDismiss, info, error, warning, success, visible = true }) => {
+const Toast: FC<IToastProps> = ({ title, children, onDismiss, modifier }) => {
+  const wrapperClasses = useModifier("toast", modifier);
 
-  const wrapperClasses = classNames({
-    [style.toast]: true,
-    [style.danger]: error,
-    [style.info]: info,
-    [style.warning]: warning,
-    [style.success]: success,
-    [style.visible]: visible,
-  })
-  
   return (
-    <div className={wrapperClasses} >
-      <div className={style.header}>
+    <div className={wrapperClasses}>
+      <div className="toast__header">
         <p>{title}</p>
-        <Button onClick={onDismiss} icon="delete" />
+        <Button onClick={onDismiss} label={<Icon name="delete" />} />
       </div>
-      {children && (
-        <div className={style.body}>
-          {children}
-        </div>
-      )}
+      {children && <div className="toast__body">{children}</div>}
     </div>
-  )
-}
+  );
+};
 
-export default memo(Toast)
+export default memo(Toast);

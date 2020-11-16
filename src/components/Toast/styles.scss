@@ -3,10 +3,8 @@
 .toast {
   @include visible;
   @include color-variants;
-  & > .header {
-
+  .toast__header {
   }
-  & > .body {
-
+  .toast__body {
   }
 }

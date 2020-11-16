@@ -1,23 +1,17 @@
-import React, { FC, ReactNode, memo } from 'react';
-import classNames from 'classnames';
-import style from './style.module.scss';
+import React, { FC, ReactNode, memo } from "react";
+import "./styles.scss";
 
 export interface ILoadingProps {
   children?: ReactNode;
-  className?: string;
-};
+}
 
-const Loading: FC<ILoadingProps> = ({ children = null, className = '' }) => {
-  const loadingClasses = classNames({
-    [style.loadingContainer]: true,
-    [className]: className,
-  });
+const Loading: FC<ILoadingProps> = ({ children = null }) => {
   return (
-    <div className={loadingClasses}>
+    <div className="loading__container">
       {children}
       Loading...
     </div>
   );
-}
+};
 
 export default memo(Loading);

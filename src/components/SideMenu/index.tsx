@@ -1,37 +1,39 @@
-import React, { FC, memo } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { FC, memo } from "react";
+import { NavLink } from "react-router-dom";
+import useTables from "hooks/useTables";
+import Hamburger from "./components/Hamburger";
+import Logo from "./components/Logo";
+import "./styles.scss";
 
-import style from './style.module.scss';
-
-import useTables from 'hooks/useTables';
-import Logo from './Logo';
-import Hamburger from './Hamburger';
-
-export interface ISideMenuProps {};
+export interface ISideMenuProps {}
 
 const SideMenu: FC<ISideMenuProps> = () => {
-  const { tables, loading } = useTables()
-  return <>
-    <Hamburger />
-    <Logo />
-    <aside className={style.sideMenuSpace}>
-    </aside>
-    <aside className={style.sideMenu}>
-      <p className={style.menuLabel}>
-        Content Types
-      </p>
-      <ul className={style.menuList}>
-        {loading
-          ? <p>Loading...</p>
-          : tables.map((table, index) => (
-              <NavLink key={index} to={`/table/${table.name}`} activeClassName={style.active}>
+  const { tables, loading } = useTables();
+  return (
+    <>
+      <Hamburger />
+      <Logo />
+      <aside className="sideMenu__space"></aside>
+      <aside className="sideMenu">
+        <p className="sideMenu__menuLabel">Content Types</p>
+        <ul className="sideMenu__menuList">
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            tables.map((table, index) => (
+              <NavLink
+                key={index}
+                to={`/table/${table.name}`}
+                activeClassName="sideMenu__active"
+              >
                 {table.layout.label}
               </NavLink>
             ))
-        }
-      </ul>
-    </aside>
-  </>
-}
+          )}
+        </ul>
+      </aside>
+    </>
+  );
+};
 
 export default memo(SideMenu);

@@ -1,14 +1,10 @@
-import React, { FC, memo } from 'react';
-import style from './style.module.scss';
+import React, { FC, memo } from "react";
+import "./styles.scss";
 
-export interface ILoginProps {};
+export interface ILoginProps {}
 
 const Login: FC<ILoginProps> = () => {
-  return (
-    <div className={style.loginContainer}>
-      Login view
-    </div>
-  );
-}
+  return <div className="login__container">Login view</div>;
+};
 
 export default memo(Login);

@@ -1,25 +1,12 @@
-import React, { FC, memo, ReactNode } from 'react'
-import classNames from 'classnames'
-
-import style from './style.module.scss'
+import React, { FC, memo, ReactNode } from "react";
+import "./styles.scss";
 
 export interface IContainerProps {
-  children: ReactNode,
-  className?: string,
+  children: ReactNode;
 }
 
-const Container: FC<IContainerProps> = ({ children, className = '' }) => {
+const Container: FC<IContainerProps> = ({ children }) => {
+  return <div className="container">{children}</div>;
+};
 
-  const containerClasses = classNames({
-    [style.container]: true,
-    [className]: className,
-  })
-
-  return (
-    <div className={containerClasses}>
-      {children}
-    </div>
-  )
-}
-
-export default memo(Container)
+export default memo(Container);

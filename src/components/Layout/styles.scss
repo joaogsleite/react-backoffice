@@ -2,9 +2,9 @@
 
 .layout {
   display: flex;
-  & > .main {
+  .layout__main {
     flex-grow: 1;
-    & > .children {
+    .layout__children {
       margin-top: 70px;
       padding: 0 35px;
     }
